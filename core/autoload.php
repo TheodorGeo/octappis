@@ -15,6 +15,8 @@ require 'Routing/Router.php';
 
 require 'Routing/Route.php';
 
+require 'Http/Controllers/App.php';
+
 
 $route = new Route;
 
@@ -32,10 +34,12 @@ require '../routes/web.php';
 
 
 
+
 //Autoload Basic Helpers Functions
 
 require 'Helpers/views.helpers.php';
 
+require 'Helpers/routes.helpers.php';
 
 
 
@@ -44,4 +48,13 @@ require 'Helpers/views.helpers.php';
 if ($app['errors_display'] == 'on'){
 	require 'Errors/basic_errors_display.php';
 }
+
+
+
+
+//App Bootstrap Logic
+
+$GLOBALS['routes'] = $route->routes();
+
+
 

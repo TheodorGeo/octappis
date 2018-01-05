@@ -9,9 +9,7 @@ class Route
 
 	public  function get($uri, $callback)
 	{
-		$requiredFiles = get_required_files();
-
-		$routesFrom = substr(end($requiredFiles), -7);
+		$routesFrom = $this->routesPath();
 
 		$this->i ++;
 
@@ -48,7 +46,7 @@ class Route
 
 		$this->routes[$this->i][4] = '';
 		
-		
+		$this->routes[$this->i][5] = $var[0];
 
 		return $this ;
 
@@ -57,9 +55,7 @@ class Route
 	public  function post($uri, $callback)
 	{
 
-		$requiredFiles = get_required_files();
-
-		$routesFrom = substr(end($requiredFiles), -7);
+		$routesFrom = $this->routesPath();
 
 		$this->i ++;
 
@@ -96,7 +92,7 @@ class Route
 
 		$this->routes[$this->i][4] = '';
 		
-		
+		$this->routes[$this->i][5] = $var[0];
 
 		return $this ;
 	}
@@ -115,31 +111,23 @@ class Route
 		return $this ;
 	}
 
-	public function get_all_names()
+	protected function routesPath()
 	{
 
-		$temp = [];
+		$requiredFiles = get_required_files();
 
-		foreach ($this->routes as $route) {
-			if($route[4] !==''){
-				$temp[] = $route[4];
-			}
-		}
+		$routesFrom = substr(end($requiredFiles), -7);
 
-		return $temp ;
+		return $routesFrom ;
 	}
 
-	public function get_all_uris()
+	public function directory($dir)
 	{
-		$temp = [];
 
-		foreach ($this->routes as $route) {
-			
-			$temp[] = $route[1];
+		$this->routes[$this->i][5] = $dir . "/" . $this->routes[$this->i][2] ;
 
-		}
+		return $this;
 
-		return $temp ;
 	}
-
+	
 }

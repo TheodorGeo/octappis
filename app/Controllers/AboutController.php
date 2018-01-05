@@ -1,6 +1,7 @@
 <?php
 
 
+
 class AboutController 
 {
 	public function index()
@@ -11,6 +12,11 @@ class AboutController
 	public function post()
 	{
 		echo "post here";
+	}
+
+	public function pass()
+	{
+		return redirect_to('API_home');
 	}
 }
 

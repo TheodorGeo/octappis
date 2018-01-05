@@ -13,5 +13,5 @@ function current_view(){
 // for partials 
 
 function render(){
-
+	echo "tetetet";
 }

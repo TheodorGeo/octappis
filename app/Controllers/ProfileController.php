@@ -1,9 +1,16 @@
 <?php
 
-class ProfileController
+use Octappis\App as App ;
+
+class ProfileController extends App
 {
 	public function show()
 	{
-		echo "profile page<br><br>";
+		
+		
+
+		return view('profile');
+
+
 	}
 }

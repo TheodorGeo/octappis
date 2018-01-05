@@ -15,9 +15,9 @@ class Router
 		
 		foreach ($routes as $route) {
 
-			if ($route[0] == $method && $route[1] == $uri) {
+			if ($route[0] == $method && $route[1] == $uri ) {
 
-				$controllerPath = "../app/Controllers/$route[2]Controller.php";
+				$controllerPath = "../app/Controllers/$route[5]Controller.php";
 
 				$controllerName = $route[2]."Controller";
 
