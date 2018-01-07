@@ -11,6 +11,8 @@ $app = require '../config/app.php' ;
 
 require 'Request.php';
 
+require 'Response.php';
+
 require 'Routing/Router.php';
 
 require 'Routing/Route.php';

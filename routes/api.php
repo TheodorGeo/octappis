@@ -1,6 +1,6 @@
 <?php
 
-$route->get('home','HomeController@index')->name('API_Home')->directory('api');
+$route->get('home/{#id}','HomeController@index')->name('API_Home')->directory('api');
 
 $route->get('/', 'HomeController@index');
 
