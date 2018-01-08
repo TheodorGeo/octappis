@@ -5,6 +5,12 @@
 </head>
 <body>
 
+<a href="/about/2">test</a>
+
+<?= $data ?>
+
+
+
 
 </body>
 </html>

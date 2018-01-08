@@ -15,7 +15,7 @@ class Router
 		
 		foreach ($routes as $route) {
 
-			if ($route[0] == $method && self::checkUri($route[1]) ) {
+			if ($route[0] == $method && self::checkUri($route[1], $uri) ) {
 
 				$controllerPath = "../app/Controllers/$route[5]Controller.php";
 
@@ -34,7 +34,7 @@ class Router
 			require $controllerPath;
 
 			$response = new Response ;
-			$request = new Request;
+			$request = new Request ;
 
 			$test = new $controllerName();
 
@@ -59,7 +59,7 @@ class Router
 		
 	}
 
-	public static function checkUri($get_uri)
+	public static function checkUri($get_uri, $uri)
 	{
 		preg_match_all("/{(.*?)}/", $get_uri , $results);
 		$uri_params = $results[0];
@@ -68,9 +68,9 @@ class Router
 		$uri_paths = explode('/', $get_uri);
 
 
-		$request_uri_path = explode('/', Request::uri());
+		$request_uri_path = explode('/', $uri);
 
-
+		$data= [];
 
 		$position = [];
 		$unposition = [];
@@ -82,6 +82,7 @@ class Router
 				if($path == $param){
 					$position[] = $counter; 
 					$change = true;
+
 				}
 			}
 
@@ -105,16 +106,26 @@ class Router
 					
 			}elseif ($path[0] =="{" && isset($request_uri_path[$counter])) {
 				$success_2 ++;
+				$key = $path ;
+				$key = str_replace('#', '', $key);
+				$key = str_replace('{', '', $key);
+				$key = str_replace('}', '', $key);
+				$data[$key] = $request_uri_path[$counter];
 			}elseif ($path[1] =="#") {
 				$optional = true;
 			}
 
 			$counter ++;
 		}
+
+
 		$num1 = count(array_merge($position,$unposition));
 		$num2 = count($request_uri_path);
 		if (($success_1 +$success_2  == $num1  && $success_1 +$success_2 == $num2) ||
 			($success_1 +$success_2  == $num1-1  && $success_1 +$success_2 == $num2 && $optional )){
+			
+			Request::$params = $data;
+
 			return true;
 		}else{
 			return false;

@@ -9,9 +9,10 @@ $app = require '../config/app.php' ;
 
 //Autoload Classes
 
-require 'Request.php';
 
-require 'Response.php';
+require 'Http/Request.php';
+
+require 'Http/Response.php';
 
 require 'Routing/Router.php';
 
@@ -35,13 +36,17 @@ require '../routes/web.php';
 
 
 
+//var_dump($route->routes());
 
 
 //Autoload Basic Helpers Functions
 
-require 'Helpers/views.helpers.php';
+require 'Helpers/functions/views.helpers.php';
 
-require 'Helpers/routes.helpers.php';
+require 'Helpers/functions/routes.helpers.php';
+
+require 'Helpers/Classes/Filter.php';
+
 
 
 
@@ -56,7 +61,6 @@ if ($app['errors_display'] == 'on'){
 
 //App Bootstrap Logic
 
-$GLOBALS['routes'] = $route->routes();
 
-
+Route::$ROUTES = $route->routes();
 

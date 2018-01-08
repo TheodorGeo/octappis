@@ -2,8 +2,10 @@
 
 class TestController
 {
-	public function index(Request $request )
+	public function index($request)
 	{	
-		
+		echo "string";
+
+
 	}
 }

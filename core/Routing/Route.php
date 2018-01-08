@@ -3,6 +3,8 @@
 class Route 
 {
 
+	static $ROUTES = [];
+
 	public $routes = [] ;
 
 	public $i = -1;

@@ -6,7 +6,7 @@ $route->get('/', 'HomeController@index');
 
 $route->get('about','AboutController@index');
 
-$route->post('form', 'HomeController@index')->name('apiPost')->name('asds');
+$route->post('form/{id}/{num}/{#name}', 'HomeController@index')->name('apiPost')->name('asds');
 
 
 $route->get('tete', 'HomeController@index');
