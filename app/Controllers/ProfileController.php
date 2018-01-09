@@ -8,7 +8,6 @@ class ProfileController extends App
 	{
 		
 		
-
 		return view('profile');
 
 

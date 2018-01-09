@@ -7,8 +7,9 @@ $app = require '../config/app.php' ;
 
 
 
-//Autoload Classes
+//Autoload Basic Classes
 
+require 'Http/Controllers/App.php';
 
 require 'Http/Request.php';
 
@@ -18,7 +19,7 @@ require 'Routing/Router.php';
 
 require 'Routing/Route.php';
 
-require 'Http/Controllers/App.php';
+
 
 
 $route = new Route;
@@ -36,16 +37,13 @@ require '../routes/web.php';
 
 
 
-//var_dump($route->routes());
 
+//Autoload Basic Helpers Functions & Classes
 
-//Autoload Basic Helpers Functions
+require 'Helpers/functions/autoload.php';
 
-require 'Helpers/functions/views.helpers.php';
+require 'Helpers/Classes/autoload.php';
 
-require 'Helpers/functions/routes.helpers.php';
-
-require 'Helpers/Classes/Filter.php';
 
 
 

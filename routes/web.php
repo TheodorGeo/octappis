@@ -22,3 +22,8 @@ $route->get('{user}/{id}/test/{num}/{#date}', 'TestController@index')->name('TET
 
 
 
+$route->get('ela' , function(){
+
+
+	echo "sssssssssssssssssss";
+});
