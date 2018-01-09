@@ -10,3 +10,7 @@ $route->post('form/{id}/{num}/{#name}', 'HomeController@index')->name('apiPost')
 
 
 $route->get('tete', 'HomeController@index');
+
+$route->get('test/{#id}', function($req){
+	echo "test callback function ". $req->param('id');
+});

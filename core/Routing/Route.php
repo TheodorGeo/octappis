@@ -9,7 +9,7 @@ class Route
 
 	public $i = -1;
 
-	public  function get($uri, $callback)
+	public  function  get($uri, $callback)
 	{
 		$routesFrom = $this->routesPath();
 
@@ -50,11 +50,17 @@ class Route
 		
 		$this->routes[$this->i][5] = $var[0];
 
+		if (is_callable($callback)) {
+			$this->routes[$this->i][6] = $callback ;
+		}else{
+			$this->routes[$this->i][6] = "string" ;
+		}
+
 		return $this ;
 
 	}
 
-	public  function post($uri, $callback)
+	public  function  post($uri, $callback)
 	{
 
 		$routesFrom = $this->routesPath();
@@ -95,12 +101,18 @@ class Route
 		$this->routes[$this->i][4] = '';
 		
 		$this->routes[$this->i][5] = $var[0];
+		
+		if (is_callable($callback)) {
+			$this->routes[$this->i][6] = $callback ;
+		}else{
+			$this->routes[$this->i][6] = "string" ;
+		}
 
 		return $this ;
 	}
 
 
-	public function routes()
+	public function  routes()
 	{
 		return $this->routes;
 	}

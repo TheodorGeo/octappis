@@ -16,20 +16,26 @@ class Router
 		foreach ($routes as $route) {
 
 			if ($route[0] == $method && self::checkUri($route[1], $uri) ) {
+				if ($route[6] == 'string') {
+					$controllerPath = "../app/Controllers/$route[5]Controller.php";
 
-				$controllerPath = "../app/Controllers/$route[5]Controller.php";
+					$controllerName = $route[2]."Controller";
 
-				$controllerName = $route[2]."Controller";
+					$methodName = $route[3];
 
-				$methodName = $route[3];
+					$results = true;
 
-				$results = true;
-
-				break;
+					break;
+				}else{
+					//$route[6]();
+					$results = true;
+					break ;
+				}
+				
 			}
 		}
 
-		if ($results) {
+		if ($results && $route[6] == 'string') {
 
 			require $controllerPath;
 
@@ -40,6 +46,10 @@ class Router
 
 			$test->$methodName($request, $response);
 
+		}elseif($results && $route[6] !== 'string'){
+			$response = new Response ;
+			$request = new Request ;
+			$route[6]($request, $response);
 		}else{
 
 			$app = require '/../../config/app.php';
